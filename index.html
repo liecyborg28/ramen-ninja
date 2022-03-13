@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramen Ninja</title>
+    <link rel="icon" type="imageasset/favicon/png" sizes="32x32" href="asset/favicon/favicon-32x32.png">
+    <link rel="icon" type="imageasset/favicon/png" sizes="96x96" href="asset/favicon/favicon-96x96.png">
+    <link rel="icon" type="imageasset/favicon/png" sizes="16x16" href="asset/favicon/favicon-16x16.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="login">
+            <img src="asset/icons/ramen_dining_white_48dp.svg" alt="logo">
+            <label for="login-username">Ramen Ninja</label>
+            <div class="username">
+                <input type="password" name="login-username" placeholder="Masukkan username...">
+                <div class="login-username"></div>
+            </div>
+            <div class="password">
+                <input type="password" id="" class="login-password" placeholder="Masukkan password...">
+                <div class="login-password"></div>
+            </div>
+            <button class="confirm">Login</button>
+        </div>
+        <section class="navbar">
+            <div class="logo">
+                <img src="asset/icons/ramen_dining_white_48dp.svg" alt="">
+                <p>Ramen Ninja</p>
+            </div>
+            <nav>
+                <div><img src="asset/icons/point_of_sale_white_48dp.svg" alt=""></div>
+                <div><img src="asset/icons/restaurant_menu_white_48dp.svg" alt=""></div>
+                <div><img src="asset/icons/bar_chart_white_48dp.svg" alt=""></div>
+                <div><img src="asset/icons/history_white_48dp.svg" alt=""></div>
+            </nav>
+            <div class="logout"><img src="asset/icons/logout_white_48dp.svg" alt=""></div>
+            <div class="off"><img src="asset/icons/power_settings_new_white_48dp.svg" alt=""></div>
+        </section>
+        <section class="content">
+            <div class="pos" id="content">
+                <div class="search">
+                    <input type="text" class="search" placeholder="Cari menu..." list="search">
+                    <datalist id="search"></datalist>
+                </div>
+                <div class="category">
+                    <p>Pilih Kategori</p>
+                    <button class="all">Semua<img class="hide" src="asset/icons/done_white_48dp.svg" alt=""></button>
+                    <button class="food">Makanan<img class="hide" src="asset/icons/done_white_48dp.svg" alt=""></button>
+                    <button class="drink">Minuman<img class="hide" src="asset/icons/done_white_48dp.svg"
+                            alt=""></button>
+                    <div class="info-result">0 hasil ditemukan</div>
+                </div>
+                <div class="result"></div>
+                <div class="cart">
+                    <div class="header-bills">Tagihan</div>
+                    <div class="bills"></div>
+                    <div class="calc">
+                        <p class="subtotal">Subtotal:</p>
+                        <p class="subtotal-value">Rp0,00</p>
+                        <p class="tax">Pajak:</p>
+                        <p class="tax-value">Rp0,00</p>
+                        <p class="total">Total:</p>
+                        <p class="total-value">Rp0,00</p>
+                        <p class="return">Kembalian:</p>
+                        <p class="return-value">Rp0,00</p>
+                    </div>
+                    <input class="cash" type="number" placeholder="Rp0,00">
+                    <button class="pay confirm">Bayar</button>
+                    <button class="reset confirm">Simpan</button>
+                </div>
+            </div>
+            <div class="menu" id="content">
+                <p class="h-add-menu"></p>
+                <div class="add-new">
+                    <h3>Tambah Daftar Menu</h3>
+                    <figure>
+                        <span class="add-new"><input type="file" accept="image/*" class="add-img"></span>
+                        <figcaption>Pratinjau Gambar</figcaption>
+                    </figure>
+                    <input class="add-name" type="text" placeholder="Masukkan nama menu..." class="nama-menu">
+                    <div class="add-type">
+                        Kategori:
+                        <select class="add-type">
+                            <option value="makanan" selected>Makanan</option>
+                            <option value="minuman">Minuman</option>
+                        </select>
+                    </div>
+                    <div class="add-price">
+                        <label for="size-S">(S)</label>
+                        <input placeholder="Rp0,00" name="size-S" type="number">
+                        <label for="size-M">(M)</label>
+                        <input placeholder="Rp0,00" name="size-M" type="number">
+                        <label for="size-L">(L)</label>
+                        <input placeholder="Rp0,00" name="size-L" type="number">
+                    </div>
+                    <button class="save-new confirm" disabled>Simpan</button>
+                </div>
+                <div class="change-menu"></div>
+                <p class="list-menu">Daftar Menu <select class="list-menu">
+                        <option value="semua">Semua</option>
+                        <option value="makanan">Makanan</option>
+                        <option value="minuman">Minuman</option>
+                    </select></p>
+                <div class="tax-rule">
+                    <label for="tax-rule">Besar pajak:</label>
+                    <input type="number" name="tax-rule" placeholder="0">
+                    <p>%</p>
+                </div>
+            </div>
+            <div class="chart" id="content">
+                <p class="h-chart">Laporan Penjualan</p>
+                <label for="" class="select-chart">
+                    Penjualan
+                    <select class="select-chart"></select>
+                </label>
+                <div class="date-input">
+                    <label for="date-from">Dari <input name="date-from" type="date" class="date-input"></label>
+                    <label for="date-to">Sampai <input name="date-to" type="date" class="date-input"></label>
+                </div>
+                <div class="chart-box">
+                    <canvas class="chart"></canvas>
+                </div>
+            </div>
+            <div class="history" id="content">
+                <div class="dialog-form confirm" id="remove">
+                    <p class="h-dialog-form">Tambah Data Pengguna</p>
+                    <div class="dialog-exit"></div>
+                    <figure>
+                        <span class="add-pic">
+                            <input type="file" class="add-pic">
+                        </span>
+                        <figcaption>Pratinjau Gambar</figcaption>
+                    </figure>
+                    <input type="text" class="username-acc" placeholder="Masukkan Username...">
+                    <div class="password-acc">
+                        <input type="password" class="new-password" placeholder="Masukkan Password...">
+                        <div class="new-password"></div>
+                        <input type="password" class="confirm-password" placeholder="Konfirmasi Password...">
+                        <div class="confirm-password"></div>
+                    </div>
+                    <select class="status-acc">
+                        <option value="owner" selected>Owner</option>
+                        <option value="kasir">Kasir</option>
+                    </select>
+                    <div class="dialog-save confirm" aria-disabled="true">Simpan</div>
+                </div>
+                <div class="history-login">
+                    <p class="h-history-login">Riwayat Login</p>
+                    <div class="header-list-history-login">
+                        <p>nama pengguna</p>
+                        <p>status</p>
+                        <p>detail</p>
+                        <input type="date" name="" id="" class="date-history">
+                    </div>
+                    <div class="list-history-login"></div>
+                </div>
+                <button class="add-user confirm">+ Tambah Pengguna</button>
+                <p class="h-user-list">Daftar Pengguna</p>
+                <div class="user-list"><label>Tidak ada akun terdaftar :(</label></div>
+            </div>
+        </section>
+        <section class="warning">Maaf, halaman tidak mendukung ukuran layar ini. Mohon ubah posisi layar menjadi
+            landscape :)</section>
+    </div>
+    <script src="chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
