@@ -128,7 +128,12 @@ vPassword = document.querySelector('div.login-password'),
 loginUser = document.querySelector('div.username input'),
 loginPass = document.querySelector('div.password input'),
 loginBtn = document.querySelector('div.login button'),
-loginPage = document.querySelector('div.login')
+loginPage = document.querySelector('div.login'),
+
+// Loading Screen
+loading = document.querySelector('.loading'),
+circle = document.querySelector('.big-circle'),
+tinyCircle = document.querySelectorAll('.circle')
 
 let 
 sub = 0, 
@@ -284,7 +289,7 @@ function urutkanPerHarga(db, rules) {
             break
 
         default:
-            console.log('Parameter hanya bernilai a-z atau z-a')
+            console.error('Argumen hanya bernilai a-z atau z-a')
         break
     }
     return db
@@ -300,7 +305,51 @@ function cekDuplikatNama(db, nama) {
     return (hasil.length != 0) ? true : false
 }
 
+function loadingScreen(mode, type) {
+    if(mode == 'on') {
+        loading.classList.remove('hide')
+        if(type == 1) {
+            circle.classList.remove('hide')
+            tinyCircle[0].classList.add('hide')
+            tinyCircle[1].classList.add('hide')
+            tinyCircle[2].classList.add('hide')
+            setInterval(() => {
+            circle.classList.toggle('spin')
+            }, 500)
+        }
+        else if(type == 2) {
+            tinyCircle[0].classList.remove('hide')
+            tinyCircle[1].classList.remove('hide')
+            tinyCircle[2].classList.remove('hide')
+            circle.classList.add('hide')
+            setInterval(() => {
+                tinyCircle[0].classList.toggle('big')
+                tinyCircle[1].classList.toggle('big')
+            }, 200)
+            setInterval(() => {
+                tinyCircle[1].classList.toggle('big')
+                tinyCircle[2].classList.toggle('big')
+            }, 600)
+            setInterval(() => {
+                tinyCircle[2].classList.toggle('big')
+                tinyCircle[0].classList.toggle('big')
+            }, 400)
+        }
+        else {
+            console.error('Kesalahan memasukkan type.')
+        }
+    }
+    else if(mode == 'off') {
+        loading.classList.add('hide')
+    }
+    else {
+        console.error('Kesalahan memasukkan mode.')
+        loading.classList.add('hide')
+    }
+}
+
 window.addEventListener('load', () => {
+    loadingScreen('off')
     nav[0].classList.add('change')
     fitur[0].style.zIndex = 1
     // POS
@@ -654,9 +703,13 @@ dialogSave.addEventListener('click', () => {
             last: '[New]'
         })
         simpanData('akun', JSON.stringify(akun))
+        loadingScreen('on', 2)
         alert('Data berhasil disimpan!')
-        renderAcc()
-        resetDialog()
+        setTimeout(() => {
+            loadingScreen('off')
+            renderAcc()
+            resetDialog()
+        }, 500)
     }
 })
 
@@ -676,23 +729,39 @@ searchMenu.addEventListener('input', () => {
     setTimeout(() => {
         result = cariNama(urutkanPerNama(produk, 'a-z'), searchMenu.value.toLowerCase())
         showList()
-        setTimeout(() => renderMenu(), 500)
+        loadingScreen('on', 2)
+        setTimeout(() => {
+            loadingScreen('off')
+            renderMenu()
+        }, 500)
     }, 500)
 })
 
 tblAll.addEventListener('click', () => {
     result = urutkanPerKategori(produk, 'a-z')
-    renderMenu()
+    loadingScreen('on', 2)
+    setTimeout(() => {
+        loadingScreen('off')
+        renderMenu()
+    }, 500)
 })
 
 tblFood.addEventListener('click', () => {
     result = produk.filter(e => e.kategori.includes('makanan'))
-    renderMenu()
+    loadingScreen('on', 2)
+    setTimeout(() => {
+        loadingScreen('off')
+        renderMenu()
+    }, 500)
 })
 
 tblDrink.addEventListener('click', () => {
     result = produk.filter(e => e.kategori.includes('minuman'))
-    renderMenu()
+    loadingScreen('on', 2)
+    setTimeout(() => {
+        loadingScreen('off')
+        renderMenu()
+    }, 500)
 })
 
 tblBayar.addEventListener('click', () => {
@@ -1012,9 +1081,13 @@ function showChartList() {
 
 selectChart.addEventListener('change', () => {
     label = `Penjualan Bulan ${bulan[parseFloat(selectChart.value)-1]} ${new Date().getFullYear()}`
-    renderChart(trans, `${new Date().getFullYear()}-${selectChart.value}-1`, `${new Date().getFullYear()}-${selectChart.value}-31`)
-    dateInput[0].value = ''
-    dateInput[1].value = ''
+    loadingScreen('on', 2)
+    setTimeout(() => {
+        loadingScreen('off')
+        renderChart(trans, `${new Date().getFullYear()}-${selectChart.value}-1`, `${new Date().getFullYear()}-${selectChart.value}-31`)
+        dateInput[0].value = ''
+        dateInput[1].value = ''
+    }, 500)
 })
 
 dateInput.forEach(e => {
@@ -1025,11 +1098,19 @@ dateInput.forEach(e => {
         inputValue2 = inputValue2[inputValue2.length-2]
         label = `Penjualan Periode: ${ubahFormatTgl(dateInput[0].value)} - ${ubahFormatTgl(dateInput[1].value)}`
         if(inputValue1 == inputValue2) {
-            renderChart(trans, dateInput[0].value, dateInput[1].value)
+            loadingScreen('on', 2)
+            setTimeout(() => {
+                loadingScreen('off')
+                renderChart(trans, dateInput[0].value, dateInput[1].value)
+            }, 500)
         }
         else {
-            label = 'Data yang ditampilkan maksimal periode 1 bulan'
-            renderChart(trans, '', '')
+            loadingScreen('on', 2)
+            setTimeout(() => {
+                loadingScreen('off')
+                label = 'Data yang ditampilkan maksimal periode 1 bulan'
+                renderChart(trans, '', '')
+            }, 500)
         }
         selectChart.value = ''
     })
@@ -1085,7 +1166,11 @@ function renderAcc() {
             else {
                 alert('Tidak dapat menghapus akun :)')
             }
-            renderAcc()
+            loadingScreen('on', 2)
+            setTimeout(() => {
+                loadingScreen('off')
+                renderAcc()
+            }, 500)
         })
     })
 }
@@ -1111,8 +1196,12 @@ function dialogValidasi() {
 }
 
 dateHistory.addEventListener('change', () => {
-    result = history.filter(e => e.tgl == dateHistory.value)
-    renderLogin()
+    loadingScreen('on', 2)
+    setTimeout(() => {
+        loadingScreen('off')
+        result = history.filter(e => e.tgl == dateHistory.value)
+        renderLogin()
+    }, 500)
 })
 
 vNewPass.addEventListener('click', () => {
