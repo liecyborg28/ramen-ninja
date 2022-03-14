@@ -1140,7 +1140,7 @@ div.dialog-save {
 div.login {
     z-index: 99999;
     position: absolute;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -1381,6 +1381,11 @@ div.login button:hover {
 
 /* Tablet */
 @media (max-width: 768px) {
+    .loading {
+        width: 80px;
+        height: 80px;
+    }
+
     div.pos {
         grid-template-columns: 1.5fr 1fr;
         grid-template-rows: 1fr 2fr 8fr;
@@ -1584,6 +1589,11 @@ div.login button:hover {
 
 /* Small Phone */
 @media (max-width: 640px) {
+    .loading {
+        width: 60px;
+        height: 60px;
+    }
+
     .container {
         display: flex;
         flex-direction: column-reverse;
