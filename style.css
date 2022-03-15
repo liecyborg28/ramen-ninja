@@ -3,7 +3,7 @@
     padding: 0;
     font-family: 'Poppins', 'Arial', sans-serif;
     color: #243f4d;
-    font-weight: 450;
+    letter-spacing: .05rem;
 }
 
 @font-face {
@@ -1121,7 +1121,7 @@ div.dialog-exit {
     right: 7px;
 }
 
-div.dialog-save {
+.dialog-save {
     font-size: small;
     display: flex;
     justify-content: center;
@@ -1134,6 +1134,7 @@ div.dialog-save {
     position: absolute;
     bottom: 15px;
     right: 15px;
+    border-style: none;
 }
 
 /* Login */
@@ -1224,6 +1225,11 @@ div.login button:hover {
 /* Breakpoint */
 /* Minimize */
 @media (max-width: 990px) {
+    .loading {
+        width: 90px;
+        height: 90px;
+    }
+
     div.pos {
         grid-template-columns: 2fr 1fr;
         grid-template-rows: 1fr 1fr 8fr;
