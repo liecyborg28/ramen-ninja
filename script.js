@@ -116,7 +116,7 @@ inputNewPass = document.querySelector('input.new-password'),
 inputConPass = document.querySelector('input.confirm-password'),
 vNewPass = document.querySelector('div.new-password'),
 vConPass = document.querySelector('div.confirm-password'),
-dialogSave = document.querySelector('div.dialog-save'),
+dialogSave = document.querySelector('.dialog-save'),
 selectAcc = document.querySelector('select.status-acc'),
 userList = document.querySelector('div.user-list'),
 listHistory = document.querySelector('div.list-history-login'),
@@ -362,6 +362,8 @@ window.addEventListener('load', () => {
 logout.addEventListener('click', () => {
     if(confirm('Apakah yakin ingin keluar?')) {
         loginPage.style.display = 'flex'
+        dialogForm.setAttribute('id', 'remove')
+        resetDialog()
     }
 })
 
@@ -981,6 +983,7 @@ taxRule.addEventListener('change', () => {
 
 selectMenu.addEventListener('change', () => {
     result = []
+    loadingScreen('on', 2)
     if(selectMenu.value == 'semua') {
         result = urutkanPerKategori(produk, 'a-z')
     }
@@ -990,7 +993,10 @@ selectMenu.addEventListener('change', () => {
     else if(selectMenu.value == 'minuman') {
         result = produk.filter(e => e.kategori.includes('minuman'))
     }
-    renderListMenu()
+    setTimeout(() => {
+        loadingScreen('off')
+        renderListMenu()
+    }, 500)
 })
 
 function renderChart(db, mulai, sampai) {
