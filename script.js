@@ -391,6 +391,9 @@ nav[1].addEventListener('click', () => {
     if(localStorage.getItem('tax')) {
         taxRule.setAttribute('placeholder', `${tampilkanData('tax') * 100}`)
     }
+    else {
+        taxRule.setAttribute('placeholder', `${tax * 100}`)
+    }
     result = urutkanPerKategori(produk, 'a-z')
     renderListMenu()
     selectMenu.value = 'semua'
@@ -769,42 +772,52 @@ tblDrink.addEventListener('click', () => {
 tblBayar.addEventListener('click', () => {
     tblBayar.classList.remove('confirm')
     setTimeout(() => tblBayar.classList.add('confirm'), 100)
-    if(parseFloat(inputCash.value) < (sub + pajak) || inputCash.value == '') {
-        alert('Maaf, jumlah pembayaran tidak mencukupi :(')
+    if(orderan.length < 1) {
+        alert('Orderan belum ditambahkan.')
     }
     else {
-        document.querySelector('p.return-value').innerHTML = `Rp${(parseFloat(inputCash.value) - (sub + pajak)).toLocaleString('en-US').split(',').join('.')},00`
+        if(parseFloat(inputCash.value) < (sub + pajak) || inputCash.value == '') {
+        alert('Maaf, jumlah pembayaran tidak mencukupi :(')
+        }
+        else {
+            document.querySelector('p.return-value').innerHTML = `Rp${(parseFloat(inputCash.value) - (sub + pajak)).toLocaleString('en-US').split(',').join('.')},00`
+        }
     }
 })
 
 tblReset.addEventListener('click', () => {
     tblReset.classList.remove('confirm')
     setTimeout(() => tblReset.classList.add('confirm'), 100)
-    if(confirm('Yakin ingin menyimpan transaksi?') && orderan.length != 0) {
-        nama = []
-        qty = []
-        harga = []
-        coba = ''
-        orderan.map((e) => {
-            nama.push(e.nama)
-            qty.push(e.qty)
-            harga.push(e.harga)
-        })
-        tambahData(trans, {
-            id: kodeGenerator('transaksi'), 
-            tgl: ambilTgl(), 
-            nama, 
-            qty, 
-            harga, 
-            pajak
-        })
-        simpanData('trans', JSON.stringify(trans))
-        alert('Transaksi berhasil tersimpan!')
-        orderan.splice(0)
-        renderOrder()
-        inputCash.value = ''
-        resetValue()
+    if(orderan.length < 1) {
+        alert('Orderan belum ditambahkan.')
     }
+    else {
+        if(confirm('Yakin ingin menyimpan transaksi?')) {
+            nama = []
+            qty = []
+            harga = []
+            coba = ''
+            orderan.map((e) => {
+                nama.push(e.nama)
+                qty.push(e.qty)
+                harga.push(e.harga)
+            })
+            tambahData(trans, {
+                id: kodeGenerator('transaksi'), 
+                tgl: ambilTgl(), 
+                nama, 
+                qty, 
+                harga, 
+                pajak
+            })
+            simpanData('trans', JSON.stringify(trans))
+            alert('Transaksi berhasil tersimpan!')
+            orderan.splice(0)
+            renderOrder()
+            inputCash.value = ''
+            resetValue()
+        }
+    }  
 })
 
 function resetValue() {
@@ -978,6 +991,7 @@ taxRule.addEventListener('change', () => {
     else {
         simpanData('tax', JSON.stringify(0.1))
     }
+    taxRule.value = ''
     tax = tampilkanData('tax')
 })
 
