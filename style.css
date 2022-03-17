@@ -4,6 +4,7 @@
     font-family: 'Poppins', 'Arial', sans-serif;
     color: #243f4d;
     letter-spacing: .05rem;
+    scroll-behavior: smooth;
 }
 
 @font-face {
@@ -55,8 +56,8 @@ body,
 
 .loading {
     background-color: #d0241d;
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    height: 85px;
     position: absolute;
     z-index: 999;
     border-radius: 10%;
@@ -1226,8 +1227,8 @@ div.login button:hover {
 /* Minimize */
 @media (max-width: 990px) {
     .loading {
-        width: 90px;
-        height: 90px;
+        width: 70px;
+        height: 70px;
     }
 
     div.pos {
@@ -1388,8 +1389,8 @@ div.login button:hover {
 /* Tablet */
 @media (max-width: 768px) {
     .loading {
-        width: 80px;
-        height: 80px;
+        width: 65px;
+        height: 65px;
     }
 
     div.pos {
@@ -1596,8 +1597,8 @@ div.login button:hover {
 /* Small Phone */
 @media (max-width: 640px) {
     .loading {
-        width: 60px;
-        height: 60px;
+        width: 55px;
+        height: 55px;
     }
 
     .container {
