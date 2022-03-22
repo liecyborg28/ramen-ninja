@@ -364,6 +364,10 @@ logout.addEventListener('click', () => {
         loginPage.style.display = 'flex'
         dialogForm.setAttribute('id', 'remove')
         resetDialog()
+        nav[1].classList.remove('lost')
+        nav[3].classList.remove('lost')
+        fitur[1].classList.remove('hide')
+        fitur[3].classList.remove('hide')
     }
 })
 
@@ -1258,6 +1262,12 @@ loginBtn.addEventListener('click', () => {
             if(e.nama == loginUser.value && e.password == loginPass.value) {
                 nav[0].classList.add('change')
                 fitur[0].style.zIndex = 1
+                if(e.status != 'owner') {
+                    nav[1].classList.add('lost')
+                    nav[3].classList.add('lost')
+                    fitur[1].classList.add('hide')
+                    fitur[3].classList.add('hide')
+                }
                 fitur.forEach((e, i) => {
                     if(e != fitur[0]) {
                         nav[i].classList.remove('change')
