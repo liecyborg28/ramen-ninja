@@ -1263,8 +1263,8 @@ loginBtn.addEventListener('click', () => {
                 nav[0].classList.add('change')
                 fitur[0].style.zIndex = 1
                 if(e.status != 'owner') {
-                    nav[1].classList.add('lost')
-                    nav[3].classList.add('lost')
+                    nav[1].classList.add('hide')
+                    nav[3].classList.add('hide')
                     fitur[1].classList.add('hide')
                     fitur[3].classList.add('hide')
                 }
