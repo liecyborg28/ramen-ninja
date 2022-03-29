@@ -1215,10 +1215,6 @@ div.login button:hover {
     display: none;
 }
 
-.lost {
-    opacity: 0;
-}
-
 #remove {
     display: none;
 }
