@@ -1145,7 +1145,7 @@ function renderLogin() {
     result.map(e => {
         hasil +=
             `<div class="items-list-history-login">
-                <p>${e.nama}</p>
+                <p style="text-transform: none;">${e.nama}</p>
                 <p>${e.status}</p>
                 <p>${e.act}</p>
             </div>`
@@ -1161,7 +1161,7 @@ function renderAcc() {
                 <div class="gambar-acc">
                     <img class="img-acc" style="background-image: url(${e.path});">
                 </div>
-                <p class="title-acc">${e.nama}</p>
+                <p class="title-acc" style="text-transform: none;">${e.nama}</p>
                 <div class="status">
                     <p class="h-status">Status:</p>
                     <p class="v-status">${e.status}</p>
